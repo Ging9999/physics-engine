@@ -18,13 +18,6 @@ set(GLFW_BUILD_TESTS    OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(glfw)
 
-FetchContent_Declare(
-    glm
-    GIT_REPOSITORY https://github.com/g-truc/glm.git
-    GIT_TAG        0.9.9.8
-)
-FetchContent_MakeAvailable(glm)
-
 # ── GLAD (OpenGL loader) ──
 add_library(glad STATIC thirdparty/glad/src/glad.c)
 target_include_directories(glad PUBLIC thirdparty/glad/include)
@@ -65,7 +58,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/thirdparty/stb
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw glad glm::glm)
+target_link_libraries(${PROJECT_NAME} PRIVATE glfw glad)
 
 file(COPY ${CMAKE_SOURCE_DIR}/shaders DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${CMAKE_SOURCE_DIR}/assets  DESTINATION ${CMAKE_BINARY_DIR})
